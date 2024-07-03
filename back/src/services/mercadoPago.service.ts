@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { preference } from 'src/config/mercadopago';
 import { ItemDto } from 'src/dto/item.dto';
+import { config as dotenvConfig } from 'dotenv';
+dotenvConfig({ path: '.env' });
 
 @Injectable()
 export class MercadoPagoService {
@@ -15,6 +17,12 @@ export class MercadoPagoService {
         quantity: item.quantity,
         unit_price: item.unit_price,
       })),
+      back_urls: {
+        success: process.env.MERCADOPAGO_BACK_URL_SUCCESS,
+        failure: process.env.MERCADOPAGO_BACK_URL_FAILURE,
+        pending: process.env.MERCADOPAGO_BACK_URL_PENDING,
+      },
+      auto_return: 'approved',
     };
 
     try {

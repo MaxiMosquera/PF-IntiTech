@@ -6,7 +6,7 @@ const YourComponent: React.FC = () => {
     const [preferenceId, setPreferenceId] = useState<string | null>(null);
 
     useEffect(() => {
-        initMercadoPago('TEST-fa93dbfd-43ff-4ad0-b01f-9fbd39faeafc', { locale: 'es-AR' });
+        initMercadoPago('APP_USR-e2d309f3-6b38-4645-b046-199350e8e0ca', { locale: 'es-AR' });
     }, []);
 
     const createPreference = async () => {
@@ -21,8 +21,8 @@ const YourComponent: React.FC = () => {
                         {
                             id: '1',
                             title: 'Product 1',
-                            quantity: 6,
-                            unit_price: 100,
+                            quantity: 2,
+                            unit_price: 10,
                         },
                     ],
                 }),
