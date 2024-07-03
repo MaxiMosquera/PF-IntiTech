@@ -2,9 +2,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsEnum, IsNotEmpty, IsString, IsStrongPassword, IsUUID } from 'class-validator';
 import { Role } from 'src/enum/role.enum';
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { Cart } from './cart.entity';
+import { Record } from './record.entity';
 
 
 @Entity({ name: 'users' })
@@ -94,5 +95,9 @@ export class User {
   @OneToOne(()=> Cart)
   @JoinColumn()
   cart: Cart;
+
+  @OneToMany(()=>Record, record => record.user)
+  @JoinColumn()
+  record : Record[];
   
 }
